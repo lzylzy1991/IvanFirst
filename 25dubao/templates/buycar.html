@@ -1,0 +1,124 @@
+<ion-view ng-switch on="buycarState">
+<div name="buycarInit" ng-switch-default>
+<ion-header-bar align-title="center" >
+  <a class="button button-clear" ui-sref="search" nav-direction="forward">
+    <img src="image/so3.png" alt="" style="width:20px;position:relative;top:2px;"></a>
+	<h1 class="title">购物车</h1>
+  <button class="button button-clear" style="font-size:14px;" ng-click="showBuycar(2)">编辑</button>
+</ion-header-bar>
+<ion-content class="has-footer">
+<ion-refresher pulling-text="下拉刷新" spinner="ios" on-refresh="doRefresh()" on-pulling="pulltext()"  pulling-icon="ion-ios-refresh-empty">
+</ion-refresher>
+<div class="buycar-main">
+<ul class="buycar-list">
+	<li ng-repeat="all in buycarData">	
+		<div class="buycar-list-top">
+			<label class="checkbox buycar-l-l" ><input type="checkbox" ng-model="merchant1" id="merchantbox" value="{'merId':{{all.merchantId}}}" ></label><span class="buycar-l-m"><img src="image/bc1.png">{{all.merchantName}}&nbsp;</span><span class="buycar-l-r"style="padding-top:10px"><i class="ion-ios-arrow-forward" style="font-size:16px;"></i></span>
+		</div>
+		<div ng-repeat="c in all.cpsList">
+		<div class="buycar-list-bottom-p">
+			<div class="buycar-a-t" ng-if="c.cpaList">				
+				<label class="checkbox" style="display:block;float:left;height:30px;"><input type="checkbox" name="{{p.maid}}" id="productbox" ng-checked="merchant1" value="{{p.cartProduct}}"></label><img src="{{cp.productIcon}}"><span style="display:block;float:left;height:30px;line-height:30px;margin-top:3px;">活动满减</span>
+			</div>
+
+			<div class="buycar-a-m" style="clear:both;height:80px;" ng-repeat="cp in c.cpaList">
+			<div class="buycar-t-l">
+				<img src="{{cp.productIcon}}" style="margin-left:36px;">
+			</div>
+			<div class="buycar-t-r">
+				<p class="bc-r-top">{{cp.productName}}[活动：{{cp.maId}}]</p>
+				<p class="bc-r-bottom"><span class="bc-r-b-l">¥{{cp.purchasePrice}}</span>   
+				</p>
+			</div>
+			</div>
+			<div class="buycar-a-b" style="height:40px;padding-top:5px;border-bottom:solid 1px #d8d8d8" ng-if="c.cpaList">
+<span class="bc-r-b-r"><a ng-click="editSub(c.cpaList[0].maId,c.cpaList[0].mpId,c.cpaList[0].mpId)" class="sumsub"><img src="image/mr1.png"></a><span  class="sumdata">{{c.cpaList[0].number}}</span><a ng-click="editPlus(c.cpaList[0].maId,c.cpaList[0].mpId,c.cpaList[0].mpId)" class="sumplus"><img src="image/mr2.png"></a></span>
+			</div>
+		</div>
+		<div class="buycar-list-bottom" ng-if="c.cartProduct" style="height:85px;border-bottom:solid 1px #d8d8d8">
+			<div class="buycar-t-l">
+				<label class="checkbox"><input type="checkbox" name="{{p.maid}}" id="productbox" ng-checked="merchant1" value="{{p.cartProduct}}"></label><img src="{{c.cartProduct.productIcon}}">
+			</div>
+			<div class="buycar-t-r">
+				<p class="bc-r-top">{{c.cartProduct.productName}}</p>
+				<p class="bc-r-bottom"><span class="bc-r-b-l">¥{{c.cartProduct.purchasePrice}}</span><span class="bc-r-b-r"><a ng-click="editSub(c.cartProduct.maId,c.cartProduct.mpId,c.cartProduct.number)" class="sumsub"><img src="image/mr1.png"></a><span  class="sumdata">{{c.cartProduct.number}}</span><a ng-click="editPlus(c.cartProduct.maId,c.cartProduct.mpId,c.cartProduct.number)" class="sumplus"><img src="image/mr2.png"></a></span></p>
+			</div>
+		</div>
+	 </div>
+
+	</li>
+</ul>
+</div>
+</ion-content>
+<div class="buycar-cont-b">
+		合计：<span class="pla-red">¥{{buycarTotal}}</span>   不含运费 <a href="" ng-click="deleteProduct()" class="buycar-heji" >确认</a>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div name="buycarEdit" ng-switch-when="2">
+<ion-header-bar align-title="center" >
+  <a class="button button-clear" ui-sref="search" nav-direction="forward">
+    <img src="image/so3.png" alt="" style="width:20px;position:relative;top:2px;"></a>
+	<h1 class="title">购物车</h1>
+  <button class="button button-clear" style="font-size:14px;" ng-click="showBuycar(1)">完成</button>
+</ion-header-bar>
+<ion-content class="has-footer">
+<div class="buycar-main">
+<ul class="buycar-list">
+	<li ng-repeat="all in buycarData">	
+		<div class="buycar-list-top">
+			<label class="checkbox buycar-l-l" ><input type="checkbox"  ng-model="merchant1" id="merchantbox" value="{'merId':{{all.merchantId}}}" ></label><span class="buycar-l-m"><img src="image/bc1.png">{{all.merchantName}}&nbsp;</span><span class="buycar-l-r"style="padding-top:10px"><i class="ion-ios-arrow-forward" style="font-size:16px;"></i></span>
+		</div>
+		<div ng-repeat="c in all.cpsList">
+		<div class="buycar-list-bottom-p">
+			<div class="buycar-a-t" ng-if="c.cpaList">				
+				<label class="checkbox" style="display:block;float:left;height:30px;"><input type="checkbox" name="{{p.maid}}" id="productbox" ng-checked="merchant1" value="'maId':{{c.cpaList[0].maId}},'mpId':{{c.cpaList[0].mpId}}"></label><img src="{{cp.productIcon}}"><span style="display:block;float:left;height:30px;line-height:30px;margin-top:3px;">活动满减</span>
+			</div>
+
+			<div class="buycar-a-m" style="clear:both;height:80px;" ng-repeat="cp in c.cpaList">
+			<div class="buycar-t-l">
+				<img src="{{cp.productIcon}}" style="margin-left:36px;">
+			</div>
+			<div class="buycar-t-r">
+				<p class="bc-r-top">{{cp.productName}}[活动：{{cp.maId}}]</p>
+				<p class="bc-r-bottom"><span class="bc-r-b-l">¥{{cp.purchasePrice}}</span>   
+				</p>
+			</div>
+			</div>
+			<div class="buycar-a-b" style="height:40px;padding-top:5px;border-bottom:solid 1px #d8d8d8" ng-if="c.cpaList">
+<span class="bc-r-b-r"><a ng-click="editSub(c.cpaList[0].maId,c.cpaList[0].mpId,c.cpaList[0].mpId)" class="sumsub"><img src="image/mr1.png"></a><span  class="sumdata">{{c.cpaList[0].number}}</span><a ng-click="editPlus(c.cpaList[0].maId,c.cpaList[0].mpId,c.cpaList[0].number)" class="sumplus"><img src="image/mr2.png"></a></span>
+			</div>
+		</div>
+		<div class="buycar-list-bottom" ng-if="c.cartProduct" style="height:85px;border-bottom:solid 1px #d8d8d8">
+			<div class="buycar-t-l">
+				<label class="checkbox" ><input type="checkbox" name="" id="productbox" ng-checked="merchant1"
+				 value="'maId':{{c.cartProduct.maId}},'mpId':{{c.cartProduct.mpId}}"></label><img src="{{c.cartProduct.productIcon}}">
+			</div>
+			<div class="buycar-t-r">
+				<p class="bc-r-top">{{c.cartProduct.productName}}</p>
+				<p class="bc-r-bottom"><span class="bc-r-b-l">¥{{c.cartProduct.purchasePrice}}</span><span class="bc-r-b-r"><a ng-click="editSub(c.cartProduct.maId,c.cartProduct.mpId,c.cartProduct.number)" class="sumsub"><img src="image/mr1.png"></a><span  class="sumdata">{{c.cartProduct.number}}</span><a ng-click="editPlus(c.cartProduct.maId,c.cartProduct.mpId,c.cartProduct.number)" class="sumplus"><img src="image/mr2.png"></a></span></p>
+			</div>
+		</div>
+	 </div>
+
+	</li>
+</ul>
+</div>
+</ion-content>
+<div class="buycar-cont-b">
+<label class="checkbox" style="float:left;margin-top:1px;"><input type="checkbox" name="" id="" ng-model="merchant1"></label><span style="display:block;float:left;height:44px;color:#999999;line-height:40px;">全选</span>
+ <a href="" ng-click="deleteProduct($event)" style="color:#d0021b;border:solid 1px #d0021b;border-radius:3px;background-color:#fff;height:30px;line-height:30px;margin-top:5px;width:70px;margin-right:10px;">删除</a>
+</div>
+</div>
+</ion-view>

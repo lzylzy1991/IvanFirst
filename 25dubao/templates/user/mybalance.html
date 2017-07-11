@@ -1,0 +1,99 @@
+<ion-view>
+<ion-header-bar align-title="center" >
+   <a class="button button-clear" ui-sref="tabs.user" nav-direction="forward">
+    <img src="image/我的03.gif" alt="" style="width:20px;position:relative;top:2px;"></a>
+  <h1 class="title ">我的余额</h1>
+  <a class="button button-clear" ui-sref="chat" nav-direction="forward">
+    <img src="image/kf.png" alt="" style="width:25px;position:relative;top:2px;"></a>
+
+</ion-header-bar>
+
+<ion-content>
+ <style>
+      body,p,span,div {margin :0px auto;  padding: 0px;}
+   .mybalance-span1{height:40px; line-height:40px; color:#555555; font-size:13px;  margin-left:15%; }
+   .mybalance-span2{line-height: 121px;margin-left: 10%; font-size:35px;  }
+   .mybalance-span3{vertical-align: 5px;}
+   .mybalance-span4{margin-left:32%; color: #555555;}
+   .mybalance-span5{color: #ffffff;}
+   .mybalance-span6{color: #D0D0CF;}
+   .mybalance-span7{margin-top: 10px;}
+
+   .mybalance-div1{font-size: 12px; color: #6f6f6f; width: 50%; height: 30px; margin-top: 5%; margin-left: 5%;  float: left;}
+   .mybalance-div2{width: 40%; height: 60px;color: #6f6f6f;  float: right; font-size: 9px;}
+   .mybalance-div3{font-size: 15px; color: #6f6f6f; width: 60%; height: 30px; margin-top: 7%; margin-left: 5%;  float: left;}
+   .mybalance-div4{background-color:#ffffff;  height:60px;  border-bottom:1px solid #d8d8d8;}
+   .mybalance-div9{border-bottom: 1px solid #d8d8d8; font-size: 18px; color: #555555; width:100%; height: 30px; margin-top: 5%; }
+   .mybalance-div5{border-radius:50%;color: #FC4A60; overflow:hidden;margin-left: 30%; width: 130px; height: 130px; border: 2px solid #d8d8d8;}
+   .mybalance-div6{background-color:#ffffff;  height:60px;  }
+   .mybalance-div7{ font-size: 15px; color: #88D532; width:38%; height: 30px; margin-top: 7%;   float: right;}
+   .mybalance-div10{ font-size: 15px; color: #FC4A60; width:38%; height: 30px; margin-top: 7%;   float: right;}
+   .
+   .mybalance-li{margin-left:2%; }
+
+   .mybalance-p{color:#555555;margin-left:4%;font-size: 14px;}
+
+
+ </style>
+    <div>
+  <div>
+    
+            <ul>
+                
+                <li class="mybalance-li">
+                    <p class="mybalance-p">账户余额</p>
+                   </li>
+      
+           
+                <li style="margin-top:15px;">
+
+  <div  class="mybalance-div5"><span class="mybalance-span2">{{myBalance.balance}}</span>
+    
+            </div>
+                </li>
+
+                <li> 
+                     <div style="height:40px;line-height:40px;"> 
+                    <span class="mybalance-span4">(可提现余额<span>{{myBalance.balance}}</span>)</span>
+                    </div>
+
+                </li>
+         
+            </ul>     
+               <div >
+                <div style="  margin-left:5%;line-height: 35px; margin-top:7px; height:38px; width:120px;background:url(image/qq图片20151118104510.png); color:#ffffff;"  >
+                     <a class="tab-item" href="#/withdrawals"nav-direction="enter">
+                    提现
+                </a>
+
+                </div>
+                <div style=" margin-left:60%;line-height: 35px; margin-top:-37px; height:38px; width:120px;background:url(image/qq图片20151118104510.png); color:#ffffff;" >
+                    <a class="tab-item " href="#/recharge" nav-direction="enter">
+                    充值
+                </a>
+
+                </div>
+
+            </div>   
+             
+           <div class="mybalance-div4">
+                   
+                 <div class="mybalance-div3">明细记录</div>
+                
+                 
+            </div>
+
+           <div class="mybalance-div4" ng-repeat="item in myBalance.dealList">
+                   
+                 <div class="mybalance-div1">{{item.content}}</div>
+                 <div class="mybalance-div2">{{item.createdDate | date:'yyyy-MM-dd'}}
+                    <div class="mybalance-div7" >{{item.money}}</div>
+                 </div>
+                 
+            </div>
+             
+    </div>
+
+</div>
+</ion-content>
+  </ion-view>

@@ -1,0 +1,161 @@
+<ion-view ng-switch on="orderShow">
+<ion-header-bar align-title="center" >
+  <a class="button icon-left ion-ios-arrow-left button-clear" ui-sref="tabs.user" nav-direction="back"></a>
+  <h1 class="title ">我的订单</h1>
+  <a class="button button-clear" ui-sref="chat" nav-direction="forward">
+    <img src="image/kf.png" alt="" style="width:22px;position:relative;top:2px;"></a>
+</ion-header-bar>
+<div class="bar bar-subheader subtitle">
+      <div class="order-subtitle">
+      <a ng-class="{'order-active':orderShow==1||!orderShow}" ng-click="showOrder(1)">全部</a>
+      <a ng-class="{'order-active':orderShow==2}" ng-click="showOrder(2)">待付款</a>
+      <a ng-class="{'pl-active':orderShow==3}" ng-click="showOrder(3)">待发货</a>
+      <a ng-class="{'order-active':orderShow==4}" ng-click="showOrder(4)">待收货</a>
+      <a ng-class="{'pl-active':orderShow==5}" ng-click="showOrder(5)">待评价</a>
+      </div>
+
+</div>
+
+<ion-content class="has-subheader" ng-switch-default>
+<ion-refresher pulling-text="下拉刷新" spinner="ios" on-refresh="doRefresh()" on-pulling="pulltext()"  pulling-icon="ion-ios-refresh-empty">
+</ion-refresher>
+
+  <div class="order-all-cont" ng-repeat="o in allorderdata">
+    <div class="order-num">
+  <span class="order-num-l">订单号：{{o.code}}</span>
+
+  <span class="order-num-r" ng-if="o.rsoList[0].status==1">等待买家付款</span>
+  <span class="order-num-r" ng-if="o.rsoList[0].status==2">等待收货</span>
+  <span class="order-num-r" ng-if="o.rsoList[0].status==4">等待评价</span>
+  <span class="order-num-r" ng-if="o.rsoList[0].status==5">交易完成</span>
+  <span class="order-num-r" ng-if="o.rsoList[0].status==3">等待卖家发货</span>
+
+
+</div>
+<a href="" ng-click="goOrderDetail(o.orderId,o.rsoList[0].status)">
+<div class="order-all" ng-repeat="p in o.rsoList">
+  <div class="order-all-l">
+    <img src="{{p.productIcon}}">
+  </div>
+  <div class="order-all-r">
+    <p><span class="order-all-r-title">{{p.productName}}</span><span class="order-all-r-price">¥{{p.purchasePrice}}</span></p>
+    <p style="text-align:right;margin-right:2px;color:#999999;margin-top:50px;">×{{p.amount}}</p>
+  </div>
+</div>
+  </a>
+
+<div class="order-manipulate">
+   <a class="order-manipulate-d" ng-if="o.rsoList[0].status==1" ng-click="goPay(o.orderId)">付款</a>
+   <a class="order-manipulate-d" ng-if="o.rsoList[0].status==2" ng-click="confirmOrder(o.orderId)">确认收货</a>
+   <a class="order-manipulate-d" ng-if="o.rsoList[0].status==4" ng-click="goComment(o.orderId)">评价</a>
+
+   <a class="order-manipulate-d" ng-click="goExpress()">查看物流</a>
+   <a class="order-manipulate-d" ng-click="goAppeal(o.orderId)">申诉</a>
+</div>
+  <div class="order-heji">共{{o.sum}}件商品&nbsp;&nbsp;运费：¥{{o.expressFee}}&nbsp;&nbsp;合计：<span>¥{{o.turnover}}</span></div>
+  </div>
+
+</ion-content>
+
+
+<ion-content class="has-subheader" ng-switch-when="2" >
+<ion-refresher pulling-text="下拉刷新" spinner="ios" on-refresh="doRefresh()" on-pulling="pulltext()"  pulling-icon="ion-ios-refresh-empty">
+</ion-refresher>
+  <div class="order-all-cont" ng-repeat="o in payorderdata">
+    <div class="order-num">
+    <span class="order-num-l">订单号：{{o.code}}</span><span class="order-num-r">等待买家付款</span>
+</div>
+<a href="" ng-click="goOrderDetail(o.orderId,o.status)">
+<div class="order-all" ng-repeat="p in o.rsoList">
+  <div class="order-all-l">
+    <img src="{{p.productIcon}}">
+  </div>
+  <div class="order-all-r">
+    <p><span class="order-all-r-title">{{p.productName}}</span><span class="order-all-r-price">¥{{p.purchasePrice}}</span></p>
+    <p style="text-align:right;margin-right:2px;color:#999999;margin-top:50px;">×{{p.amount}}</p>
+  </div>
+  </div></a>
+<div class="order-manipulate">
+   <a class="order-manipulate-d" style="color:#ff6c09;border-color:#ff6c09;" ng-click="goPay(o.orderId)">付款</a>
+   <a class="order-manipulate-d" ng-click="goAppeal(o.orderId)">申诉</a>
+</div>
+  <div class="order-heji">共{{o.sum}}件商品&nbsp;&nbsp;运费：¥{{}}&nbsp;&nbsp;合计：<span>¥{{o.totalprice}}</span></div>
+  </div>
+</ion-content>
+
+<ion-content class="has-subheader" ng-switch-when="3" >
+<ion-refresher pulling-text="下拉刷新" spinner="ios" on-refresh="doRefresh()" on-pulling="pulltext()"  pulling-icon="ion-ios-refresh-empty">
+</ion-refresher>
+  <div class="order-all-cont" ng-repeat="o in sendorderdata">
+    <div class="order-num">
+    <span class="order-num-l">订单号：{{o.code}}</span><span class="order-num-r">等待卖家发货</span>
+</div>
+<a href="" ng-click="goOrderDetail(o.orderId,o.status)">
+<div class="order-all" ng-repeat="p in o.rsoList">
+  <div class="order-all-l">
+    <img src="{{p.productIcon}}">
+  </div>
+  <div class="order-all-r">
+    <p><span class="order-all-r-title">{{p.productName}}</span><span class="order-all-r-price">¥{{p.purchasePrice}}</span></p>
+    <p style="text-align:right;margin-right:2px;color:#999999;margin-top:50px;">×{{p.amount}}</p>
+  </div>
+  </div></a>
+<div class="order-manipulate">
+   <a class="order-manipulate-d" ng-click="goAppeal(o.orderId)">申诉</a>
+</div>
+  <div class="order-heji">共{{o.sum}}件商品&nbsp;&nbsp;运费：¥{{}}&nbsp;&nbsp;合计：<span>¥{{o.turnover}}</span></div>
+  </div>
+</ion-content>
+
+<ion-content class="has-subheader" ng-switch-when="4" >
+<ion-refresher pulling-text="下拉刷新" spinner="ios" on-refresh="doRefresh()" on-pulling="pulltext()"  pulling-icon="ion-ios-refresh-empty">
+</ion-refresher>
+    <div class="order-all-cont" ng-repeat="o in receiveorderdata">
+    <div class="order-num">
+    <span class="order-num-l">订单号：{{o.code}}</span><span class="order-num-r">等待收货</span>
+</div>
+<a href="" ng-click="goOrderDetail(o.orderId,o.status)">
+<div class="order-all" ng-repeat="p in o.rsoList">
+  <div class="order-all-l">
+    <img src="{{p.productIcon}}">
+  </div>
+  <div class="order-all-r">
+    <p><span class="order-all-r-title">{{p.productName}}</span><span class="order-all-r-price">¥{{p.purchasePrice}}</span></p>
+    <p style="text-align:right;margin-right:2px;color:#999999;margin-top:50px;">×{{p.number}}</p>
+  </div>
+  </div> </a>
+<div class="order-manipulate">
+   <a class="order-manipulate-d" style="color:#ff6c09;border-color:#ff6c09;" ng-click="confirmOrder(o.orderId)">确认收货</a>
+   <a class="order-manipulate-d" ng-click="goExpress()">查看物流</a>
+   <a class="order-manipulate-d" ng-click="goAppeal(o.orderId)">申诉</a>
+</div>
+  <div class="order-heji">共{{o.sum}}件商品&nbsp;&nbsp;运费：¥{{o.expressFee}}&nbsp;&nbsp;合计：<span>¥{{o.turnover}}</span></div>
+  </div>
+</ion-content>
+
+<ion-content class="has-subheader" ng-switch-when="5" >
+<ion-refresher pulling-text="下拉刷新" spinner="ios" on-refresh="doRefresh()" on-pulling="pulltext()"  pulling-icon="ion-ios-refresh-empty">
+</ion-refresher>
+  <div class="order-all-cont" ng-repeat="o in commentorderdata">
+    <div class="order-num">
+    <span class="order-num-l">订单号：{{o.code}}</span><span class="order-num-r">交易成功</span>
+</div>
+<a href="" ng-click="goOrderDetail(o.orderId,o.status)">
+<div class="order-all" ng-repeat="p in o.rsoList">
+  <div class="order-all-l">
+    <img src="{{p.productIcon}}">
+  </div>
+  <div class="order-all-r">
+    <p><span class="order-all-r-title">{{p.productName}}</span><span class="order-all-r-price">¥{{p.purchasePrice}}</span></p>
+    <p style="text-align:right;margin-right:2px;color:#999999;margin-top:50px;">×{{p.amount}}</p>
+  </div>
+  </div></a>
+<div class="order-manipulate">
+   <a class="order-manipulate-d" style="color:#ff6c09;border-color:#ff6c09;" ng-click="goComment(o.orderId)">评价</a>
+   <a class="order-manipulate-d" ng-click="goExpress()">查看物流</a>
+   <a class="order-manipulate-d" ng-click="goAppeal(o.orderId)">申诉</a>
+</div>
+  <div class="order-heji">共{{o.sum}}件商品&nbsp;&nbsp;运费：¥{{o.expressFee}}&nbsp;&nbsp;合计：<span>¥{{o.turnover}}</span></div>
+  </div>
+</ion-content>
+</ion-view>

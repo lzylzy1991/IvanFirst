@@ -1,0 +1,52 @@
+<ion-header-bar align-title="center" >
+   <a class="button button-clear" ui-sref="tabs.user" nav-direction="forward">
+    <img src="image/我的03.gif" alt="" style="width:20px;position:relative;top:2px;"></a>
+  <h1 class="title ">我的积分</h1>
+  <a class="button button-clear" ui-sref="chat" nav-direction="forward">
+    <img src="image/kf.png" alt="" style="width:25px;position:relative;top:2px;"></a>
+
+</ion-header-bar>
+<ionic-caption>
+<style >
+       body,p,span,div {margin :0px auto;  padding: 0px;}
+   .mypoints-span2{line-height: 121px;margin-left: 18%; font-size: 45px;  }
+   .mypoints-span3{vertical-align: 5px;}
+   .mypoints-span1{height:40px; line-height:40px; color:#555555; font-size:13px;  margin-left:15%; }
+   .mypoints-div{background-color:#ffffff; margin-top:30px;  height:60px; border-top:1px solid #d8d8d8; }
+   .mypoints-div4{background-color:#ffffff;  height:60px; border-top:1px solid #d8d8d8; border-bottom:1px solid #d8d8d8;}
+   .mypoints-div1{font-size: 18px; color: #555555; width: 60%; height: 30px; margin-top: 5%; margin-left: 5%;  float: left;}
+   .mypoints-div2{width: 20%; height: 60px;  float: right; font-size: 9px;}
+   .mypoints-div3{width:80%; height: 30px;  float: right; margin-top: 9%}
+   .mypoints-div5{margin-top: 10%; border-radius:50%;color: #FC4A60; overflow:hidden;margin-left: 29%; width: 130px; height: 130px; border: 2px solid #d8d8d8;}
+   .mypoints-li{margin-left:32%;}
+   .mypoints-p{color:#555555;margin-left:13%;}
+
+</style>
+<div>
+            <ul>
+                
+                <li class="mypoints-li">
+                    <p class="mypoints-p">当前积分</p>
+                   </li>
+                   <div  class="mypoints-div5"><span class="mypoints-span2">{{integral}}</span><span>分</span>
+    
+            </div>
+                <li>
+ 
+ 
+            <div class="mypoints-div" ng-repeat="item in integralList">
+                   
+                 <div class="mypoints-div1">{{item.source}}</div>
+                 <div class="mypoints-div2">{{item.createdDate | date:'yyyy-MM-dd'}}
+                <div class="mypoints-div3" style="color:#FC4A60; font-size:15px;">{{item.score}}</div>
+                 </div>
+                 
+            </div>
+
+                </li>
+
+                
+            </ul>        
+    </div>
+
+</ionic-caption>

@@ -1,0 +1,62 @@
+<ion-modal-view>
+<ion-header-bar align-title="center" >
+ <a class="button icon-left ion-ios-arrow-left button-clear" ng-click="closeRegisterinfo()"></a>
+  <h1 class="title ">完善个人信息</h1>
+   <a class="button button-clear" style="font-weight:normal;color:#777777;" ng-click="closeRegister()">帮助</a>
+</ion-header-bar>
+<ion-content>
+<div class="login-content">
+    <form name="userRegister" ng-submit="doRegisterinfo()">
+   <div class="register-photo">
+      <div class="register-photo-pic">
+        <img src="image/user-photo.png">
+        <span>上传头像</span>
+      </div>
+   </div>
+   <div class="list padding" >
+    <label class="item item-input" style="width:100%;background-color:#ffffff;border-top:none;border-left:none;border-right:none;height:50px;width:100%;">
+          <span class="input-label">昵称</span>
+          <input type="text" name="nickname" ng-model="registerData.nickname"  placeholder="请输入昵称" style="color: #999999">
+    </label>
+    <label class="item item-input item-select" style="width:100%;background-color:#ffffff;border-left:none;border-right:none;height:50px;">
+      <div class="input-label">性别</div>
+      <select style="color:#999999;" ng-model="registerData.sex">
+        <option selected>男</option>
+        <option>女</option>
+      </select>
+    </label>
+    <label class="item item-input item-select" style="width:100%;background-color:#ffffff;border-left:none;border-right:none;height:50px;">
+      <div class="input-label">酒龄 </div>
+      <select style="color:#999999;" ng-model="registerData.wineage">
+        <option selected>1年</option>
+        <option>2年</option>
+        <option>3年</option>
+        <option>4年</option>
+        <option>4年</option>
+      </select>
+    </label>
+    <label class="item item-input item-select" style="width:100%;background-color:#ffffff;border-left:none;border-right:none;height:50px;">
+      <div class="input-label">喜好</div>
+      <select style="color:#999999;" ng-model="registerData.hobby">
+        <option selected>浓香型</option>
+        <option>缠绵型 </option>
+        <option>淡雅型</option>
+      </select>
+    </label>
+     <label class="padding">
+          <button class="button button-block button-assertive"  type="submit">完成并登录</button>
+        </label>
+    </div>
+  </form>
+  </div>
+  </ion-content>
+  </ion-modal-view>
+
+
+
+
+
+
+        
+
+

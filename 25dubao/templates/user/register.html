@@ -1,0 +1,42 @@
+<ion-modal-view>
+<ion-header-bar align-title="center" >
+ <a class="button icon-left ion-ios-arrow-left button-clear" ng-click="closeRegister()"></a>
+  <h1 class="title ">注册</h1>
+   <a class="button button-clear" style="font-weight:normal;color:#777777;" ng-click="closeRegister()">帮助</a>
+</ion-header-bar>
+<ion-content>
+<div class="login-content">
+      <div class="list padding">
+    <form name="userRegister" ng-submit="doRegister($event)">
+        <label class="item-input padding-left padding-right" style="border-bottom:1px solid #ccc;background-color:#ffffff;height:50px;width:100%;">
+          <span class="input-label">手机号</span>
+          <input  type="tel" name="phone" ng-model="registerData.phone" placeholder="请输入手机号" style="color: #999999:">
+        </label> <span style="display:block;position: absolute;top: 20px;right: 6px;z-index:100; width:70px;border:solid 1px #ef473a;border-radius:3px;height:30px;line-height:30px;text-align:center;" ng-click="getAuthcode()"><a  style="font-size:12px;color:#999999;" ng-click="getAuthcode()">{{myauthcode}}</a></span>
+        <label class="item-input padding-left padding-right" style="border-bottom:1px solid #ccc;background-color:#ffffff;height:50px;width:100%;">
+          <span class="input-label">验证码</span>
+          <input type="text" name="vcode" ng-model="registerData.authcode" placeholder="请输入验证码" style="color: #999999">
+        </label>
+
+        <label class="item-input padding-left padding-right" style="border-bottom:1px solid #ccc;background-color:#ffffff;height:50px;width:100%;">
+          <span class="input-label">登录密码</span>
+          <input type="password" name="password"  ng-model="registerData.password" placeholder="请输入不少于6位的密码" style="color: #999999">
+        </label>
+        <label class="item-input padding-left padding-right" style="border-bottom:1px solid #ccc;background-color:#ffffff;height:50px;width:100%;">
+          <span class="input-label">登录密码</span>
+          <input type="password" name="password" ng-model="registerData.rpassword" placeholder="请重新输入不少于6位的密码" style="color: #999999">
+        </label>
+        <label class="padding">
+          <button class="button button-block button-assertive" type="submit">注册</button>
+        </label>
+      </form>
+        <div class="login-info">
+        <span class="login-nreg">注册即视为同意名酒1号平台服务协议</span>
+ 	</div>
+
+      </div>
+
+</div>
+	</ion-content>
+	</ion-modal-view>
+
+

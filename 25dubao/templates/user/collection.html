@@ -1,0 +1,30 @@
+<ion-view ng-switch on="collectShow" ng-controller="Collection">
+<ion-header-bar align-title="center" >
+ <a class="button icon-left ion-ios-arrow-left button-clear" ui-sref="tabs.user" nav-direction="forward"></a>
+ <h1 class="collect-title"><a  ng-class="{'collect-red':collectShow==1||!collectShow}" ng-click="showCollect(1)" >商品</a><a style="margin-left:20px;" ng-class="{'collect-red':collectShow==2}" ng-click="showCollect(2)">店铺</a></h1>
+</ion-header-bar>
+<ion-content ng-switch-default>
+<div class="setting-main" style="background-color:#f5f5f5;height:100%;">
+  <div class="collcet-main" ng-repeat="p in productdata">
+        <div class="collcet-main-l"><img src="{{p.icon}}"></div>
+        <div class="collcet-main-r">
+          <p>{{p.name}}</p>
+          <p style="margin-top:20px;"><span style="display:block;float:left;color:#d0021b;">¥{{p.purchasePrice}}</span><a clss="button button-clear" style="display:block;margin-right:10px;float:right;color:#999999;font-size:12px;" ng-click="deleteProduct(p.productId)">删除</a></p>
+        </div>
+  </div>
+</div>
+
+</ion-content>
+
+<ion-content ng-switch-when="2">
+<div class="setting-main" style="background-color:#f5f5f5;height:100%;">
+  <div class="collcet-main" ng-repeat="m in merchantdata">
+        <div class="collcet-main-l"><img src="{{m.icon}}"></div>
+        <div class="collcet-main-r" style="margin-left:10px;">
+          <p>{{m.merchantName}}</p>
+          <p style="margin-top:20px;"><span style="display:block;float:left;">{{m.address}}</span><a style="display:block;margin-right:10px;float:right;color:#999999;font-size:12px;" ng-click="deleteMerchant(m.merchantId)">删除</a></p>
+        </div>
+  </div>
+</div>
+</ion-content>
+  </ion-view>

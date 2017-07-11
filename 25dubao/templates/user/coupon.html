@@ -1,0 +1,18 @@
+
+<ion-header-bar align-title="center" >
+ <a class="button icon-left ion-ios-arrow-left button-clear" ui-sref="tabs.user" nav-direction="back"></a>
+  <h1 class="title ">优惠券</h1>
+</ion-header-bar>
+<ion-content >
+<div class="address-main">
+<ul class="mycoupon" ng-repeat="c in couponList">
+<li style="background-color:#85e9d3;">
+	<div class="conpon-top"><span class="conpon-top-l">{{c.couponValue}}<span style="font-size:12px;">元</span></span><span class="conpon-top-m" style="font-size:12px;">{{c.name}}</span><img class="conpon-top-r" src="image/coupon.png"></div>
+	<div class="conpon-line"></div>
+	<div class="conpon-mid">有效期</div>
+	<div class="conpon-bottom">{{c.createdDate | date:'yyyy-MM-dd'}}</div>
+</li>	
+	
+</ul>
+</div>
+</ion-content>

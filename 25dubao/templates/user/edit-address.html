@@ -1,0 +1,31 @@
+
+<ion-header-bar align-title="center" >
+ <a class="button icon-left ion-ios-arrow-left button-clear" ui-sref="manage-address" nav-direction="back"></a>
+  <h1 class="title ">编辑地址</h1>
+</ion-header-bar>
+<ion-content >
+<div class="address-main">
+<form name="address" ng-submit="goEditAddress($event,receiveName,receivePhone,receiveAddress)">
+<div class="list" style="background-color:#ffffff">
+        <label class="item-input padding-left padding-right" style="border-bottom:1px solid #ccc;background-color:#ffffff;height:50px;width:100%;">
+          <span class="input-label">收货人</span>
+          <input type="text"  placeholder="请填写收件人姓名" ng-required="true" ng-model="receiveName" style="color: #999999">
+        </label> 
+        <label class="item-input padding-left padding-right" style="border-bottom:1px solid #ccc;background-color:#ffffff;height:50px;width:100%;">
+          <span class="input-label">联系方式</span>
+          <input type="text"  placeholder="请填写准确的联系方式" ng-required="true" ng-model="receivePhone" style="color: #999999">
+        </label>
+        <label class="item-input padding-left padding-right" style="border-bottom:1px solid #ccc;background-color:#ffffff;height:50px;width:100%;">
+          <span class="input-label">详细地址</span>
+          <input type="text" ng-required="true" ng-model="receiveAddress"  style="color: #999999">
+        </label>
+      </div>
+
+   <div class="creat-adress">
+   <label class="padding">
+          <button class="button button-block button-assertive" ng-disabled="address.$invalid"  type="submit" >保存</button>
+   </label>
+  </div>
+    </form>
+</div>
+</ion-content>

@@ -1,0 +1,56 @@
+<ion-modal-view>
+<ion-header-bar align-title="center" >
+ <a class="button icon-left ion-ios-arrow-left button-clear" ng-click="closeLogin()"></a>
+  <h1 class="title ">登录</h1>
+</ion-header-bar>
+<ion-content>
+<div class="login-content">
+      <div class="list padding">
+        <form name="userlogin" ng-submit="doLogin($event)">
+        <label class="item-input padding-left padding-right" style="border-bottom:1px solid #ccc;background-color:#ffffff;height:50px;width:100%;">
+          <span class="input-label">用户名</span>
+          <input type="text" name="username" ng-model="loginData.username" placeholder="请输入用户名" style="color: #999999">
+        </label>
+
+        <label class="item-input padding-left padding-right" style="border-bottom:1px solid #ccc;background-color:#ffffff;height:50px;width:100%;">
+          <span class="input-label">密码</span>
+          <input type="password" name="password" ng-model="loginData.password" placeholder="请输入不少于6位的密码" style="color: #999999">
+        </label>
+        <label class="padding">
+          <button class="button button-block button-assertive" type="submit">登录</button>
+        </label>
+      </form>
+        <div class="login-info">
+        <a ng-click="register()"><span class="login-nreg">新用户注册</span></a>
+ 		<a ng-click="mpassword()"><span class="login-forgotp">忘记密码？</span></a>
+ 	</div>
+		<div class="login-quik">
+   快速登录
+		</div>
+      </div>
+
+	<div class="login-threeLogin">
+		<div class="login-threelogin-top">
+			<span class="login-quik-l"></span><span class="login-quik-m">第三方登录</span><span class="login-quik-r"></span>
+		</div>
+		<div class="login-threelogin-bottom">
+			<ul>
+				<li>
+					<p><img src="image/qq.png"></p>
+					<p>QQ登录</p>
+				</li>
+				<li>
+					<p><img src="image/weixin.png"></p>
+					<p>微信登录</p>
+				</li>
+				<li>
+					<p><img src="image/sina.png"></p>
+					<p>新浪登录</p>
+
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+	</ion-content>
+	</ion-modal-view>

@@ -1,0 +1,32 @@
+
+<ion-header-bar align-title="center" >
+ <a class="button icon-left ion-ios-arrow-left button-clear" ng-click="backGo()" nav-direction="back"></a>
+  <h1 class="title ">申诉</h1>
+    <a class="button button-clear" ui-sref="chat" nav-direction="forward">
+    <img src="image/kf.png" alt="" style="width:22px;position:relative;top:2px;"></a>
+</ion-header-bar>
+<ion-content >
+<div class="address-main" >
+<form name="appeal" ng-submit="doAppeal($event,appealsort,appealcontent)">
+<div class="appeal-class" style="margin-left:15px;">申诉类型</div>
+<div class="appeal-class-title" style="background-color:#fff;height:35px;margin-left:15px;border-radius:3px;padding-left:10px;width:250px;border:solid 1px #d8d8d8">
+
+          <select class="so-select-gray" ng-model="appealsort" style="display:block;width:225px;">
+           <option selected value="1">退款</option>
+           <option value="2">退货</option>
+           <option value="3">其他</option>
+          </select>
+</div>
+<div class="appeal-class" style="margin-left:15px;">申诉内容</div>
+<div class="appeal-class-title">
+<textarea class="appeal-content"  placeholder="请填写申诉内容" value="" ng-model="appealcontent" rows="8">
+</textarea>
+</div>
+   <div class="creat-adress">
+  <label class="padding">
+          <button class="button button-block button-assertive"  type="submit">提交</button>
+   </label>
+	</div>
+  </form>
+</div>
+</ion-content>

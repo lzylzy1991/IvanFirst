@@ -1,0 +1,25 @@
+
+<ion-header-bar align-title="center" >
+ <a class="button icon-left ion-ios-arrow-left button-clear" ng-click="backGo()" nav-direction="back"></a>
+  <h1 class="title ">用户反馈</h1>
+    <a class="button button-clear" ui-sref="chat" nav-direction="forward">
+    <img src="image/kf.png" alt="" style="width:22px;position:relative;top:2px;"></a>
+</ion-header-bar>
+<ion-content >
+<div class="address-main" style="padding-top:20px;">
+<form name="appeal" ng-submit="doFeedBack($event,fbcontent,fbphone)">
+<div class="appeal-class-title">
+<textarea class="appeal-content" ng-required="true"  placeholder="请您填写反馈内容" value="" ng-model="fbcontent" rows="8">
+</textarea>
+</div>
+  <div class="feedback-name" style="margin-top:20px;"><span>手机号</span><input type="text" ng-required="true" ng-model="fdphone"></div>
+<!--   <div class="feedback-name"><span>邮箱</span><input type="text" ng-model="fbemail"></div>
+  <div class="feedback-name"><span>QQ</span><input type="text" ng-model="fbqq"></div> -->
+   <div class="creat-adress"
+  <label class="padding">
+          <button class="button button-block button-assertive" ng-disabled="appeal.$invalid"  type="submit">提交</button>
+   </label>
+	</div>
+  </form>
+</div>
+</ion-content>
